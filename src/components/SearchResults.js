@@ -1,8 +1,10 @@
 import { format } from "date-fns";
+import React, { useState } from "react";
 import moment from "moment";
-import React from "react";
+//import Row from "./Row";
 
 const SearchResults = props => {
+  const [selected, setSelected] = useState(false);
   return (
     <table className="table">
       <thead>
@@ -23,7 +25,10 @@ const SearchResults = props => {
           const date2 = moment(data.checkOutDate);
           const diff = date2.diff(date1, "days");
           return (
-            <tr>
+            <tr
+              onClick={() => setSelected(!selected)}
+              className={selected ? "selected-row" : " "}
+            >
               <th scope="row">{data.id}</th>
               <td>{data.title}</td>
               <td>{data.firstName}</td>
